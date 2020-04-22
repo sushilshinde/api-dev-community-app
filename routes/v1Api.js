@@ -5,7 +5,11 @@ router.get('/', async function(req, res, next) {
   let d = {}
   let r = await getEnvironmentDeployments()
   d = JSON.stringify(r)
-  res.setHeader('Content-Type', 'application/json');
+  
+  
+  res.setHeader('access-control-allow-origin', '*');
+  res.setHeader('content-type', 'application/json');
+  res.setHeader('content-length', '31882');  
   res.send(d);
 });
 
