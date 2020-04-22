@@ -1,4 +1,5 @@
 require("moment-timezone");
+const prettyMilliseconds = require('pretty-ms');
 const axios = require("axios");
 const moment = require("moment");
 require("dotenv").config();
@@ -8,6 +9,7 @@ exports.getEnvironmentDeployments = async () => {
     //try to get data
     const response = await axios.get(`https://circleci.com/api/v1.1/project/github/${process.env.user}/${process.env.project}?circle-token=${process.env.CCItoken}&limit=99`);
     data = response.data;
+    console.log(data)
     
   } catch (e) {
     console.error(e)
@@ -43,6 +45,12 @@ function buildResponse(p) {
                 buildNumber: ob.build_num,
                 buildStartedOn: moment(ob.start_time).tz("Asia/Kolkata").format("MMMM Do YYYY, h:mm:ss a"),
                 buildFinishedOn: moment(ob.stop_time).tz("Asia/Kolkata").format("MMMM Do YYYY, h:mm:ss a"),
+                authorName: ob.author_name,
+                buildTimeMillis:prettyMilliseconds(ob.build_time_millis),
+                body:ob.body,
+                build_url:ob.build_url,
+                committer_name:ob.committer_name,
+                author:ob.user.login
             }
         )
       }
@@ -60,6 +68,12 @@ function buildResponse(p) {
                 buildNumber: ob.build_num,
                 buildStartedOn: moment(ob.start_time).tz("Asia/Kolkata").format("MMMM Do YYYY, h:mm:ss a"),
                 buildFinishedOn: null,
+                authorName: ob.author_name,
+                buildTimeMillis:prettyMilliseconds(ob.build_time_millis),
+                body:ob.body,
+                build_url:ob.build_url,
+                committer_name:ob.committer_name,
+                author:ob.user.login
             }
         )
       }
