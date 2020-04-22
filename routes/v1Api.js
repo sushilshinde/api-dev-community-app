@@ -5,7 +5,7 @@ router.get('/', async function(req, res, next) {
   let d = {}
   let r = await getEnvironmentDeployments()
   d = JSON.stringify(r)
-  res.setHeader('content-type', 'application/json');
+  res.setHeader('Content-Type', 'application/json');
   res.send(d);
 });
 
