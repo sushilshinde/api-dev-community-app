@@ -9,7 +9,7 @@ exports.getEnvironmentDeployments = async () => {
     //try to get data
     const response = await axios.get(`https://circleci.com/api/v1.1/project/github/${process.env.user}/${process.env.project}?circle-token=${process.env.CCItoken}&limit=99`);
     data = response.data;
-    console.log(data)
+    //console.log(data)
     
   } catch (e) {
     console.error(e)
@@ -47,7 +47,8 @@ function buildResponse(p) {
       ) {
 
         const envName = ob.workflows.job_name.replace("build-", "")
-        const details = ENV_DETAILS[""+envName+""]
+        const details = ENV_DETAILS[""+ob.workflows.job_name+""]
+        console.log(details)
         tracker.push(ob.workflows.job_name)
         latest.push(
             {
