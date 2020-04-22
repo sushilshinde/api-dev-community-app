@@ -25,6 +25,14 @@ function buildResponse(p) {
       "build-qa",
       "build-prod"
     ];
+
+    const ENV_DETAILS = {
+      "build-dev":{name:"Developement","url":"https://community-app.topcoder.com/"},
+      "build-prod-beta":{name:"Beta","url":"https://beta-community-app.topcoder.com/challenges"},
+      "build-test":{name:"Test","url":"https://test-community-app.topcoder-dev.com/"},
+      "build-qa":{name:"QA","url":"https://qa-community-app.topcoder-dev.com/"},
+      "build-prod":{name:"Production","url":"https://community-app.topcoder.com/"},
+    }
     let latest = [];
     let tracker = []
     
@@ -37,10 +45,13 @@ function buildResponse(p) {
         tracker.indexOf(ob.workflows.job_name) < 0 &&
         ob.status === "success"
       ) {
+
+        const envName = ob.workflows.job_name.replace("build-", "")
+
         tracker.push(ob.workflows.job_name)
         latest.push(
             {
-                env: ob.workflows.job_name.replace("build-", ""),
+                env: ENV_DETAILS[envName],
                 branchDeployed: ob.branch,
                 buildNumber: ob.build_num,
                 buildStartedOn: moment(ob.start_time).tz("Asia/Kolkata").format("MMMM Do YYYY, h:mm:ss a"),
@@ -50,9 +61,9 @@ function buildResponse(p) {
                 authorName: ob.author_name,
                 buildTimeMillis:prettyMilliseconds(ob.build_time_millis),
                 body:ob.body,
-                build_url:ob.build_url,
+                buildUrl:ob.build_url,
                 committer_name:ob.committer_name,
-                author:ob.user.login
+                authorGitHubHandle:ob.user.login
             }
         )
       }
