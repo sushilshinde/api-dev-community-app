@@ -47,11 +47,11 @@ function buildResponse(p) {
       ) {
 
         const envName = ob.workflows.job_name.replace("build-", "")
-
+        const details = ENV_DETAILS[""+envName+""]
         tracker.push(ob.workflows.job_name)
         latest.push(
             {
-                env: ENV_DETAILS[envName],
+                env: details,
                 branchDeployed: ob.branch,
                 buildNumber: ob.build_num,
                 buildStartedOn: moment(ob.start_time).tz("Asia/Kolkata").format("MMMM Do YYYY, h:mm:ss a"),
