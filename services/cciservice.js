@@ -48,7 +48,7 @@ function buildResponse(p) {
 
         const envName = ob.workflows.job_name.replace("build-", "")
         const details = ENV_DETAILS[""+ob.workflows.job_name+""]
-        console.log(details)
+        //console.log(details)
         tracker.push(ob.workflows.job_name)
         latest.push(
             {
@@ -86,7 +86,7 @@ function buildResponse(p) {
                 buildFinishedOn: null,
                 buildFinishedOnEDT: null,
                 authorName: ob.author_name,
-                buildTimeMillis:prettyMilliseconds(ob.build_time_millis),
+                buildTimeMillis:null,
                 body:ob.body,
                 build_url:ob.build_url,
                 committer_name:ob.committer_name,
