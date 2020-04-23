@@ -37,7 +37,12 @@ function buildResponse(p) {
     let tracker = []
     
     for (i = 0; i < p.length; i++) {
+      
       const ob = p[i];
+      
+      const envDetails = ENV_DETAILS[""+ob.workflows.job_name+""]
+      //console.log(details)
+
       if (
         ob.workflows &&
         ob.workflows.job_name &&
@@ -45,14 +50,11 @@ function buildResponse(p) {
         tracker.indexOf(ob.workflows.job_name) < 0 &&
         ob.status === "success"
       ) {
-
-        const envName = ob.workflows.job_name.replace("build-", "")
-        const details = ENV_DETAILS[""+ob.workflows.job_name+""]
-        //console.log(details)
+       
         tracker.push(ob.workflows.job_name)
         latest.push(
             {
-                env: details,
+                env: envDetails,
                 branchDeployed: ob.branch,
                 buildNumber: ob.build_num,
                 buildStartedOn: moment(ob.start_time).tz("Asia/Kolkata").format("MMMM Do YYYY, h:mm:ss a"),
@@ -78,7 +80,7 @@ function buildResponse(p) {
       ) {
         latest.push(
             {
-                env: ob.workflows.job_name.replace("build-", ""),
+                env: envDetails,
                 branchDeployed: ob.branch,
                 buildNumber: ob.build_num,
                 buildStartedOn: moment(ob.start_time).tz("Asia/Kolkata").format("MMMM Do YYYY, h:mm:ss a"),
