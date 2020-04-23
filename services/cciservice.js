@@ -64,7 +64,8 @@ function buildResponse(p) {
                 body:ob.body,
                 buildUrl:ob.build_url,
                 committer_name:ob.committer_name,
-                authorGitHubHandle:ob.user.login
+                authorGitHubHandle:ob.user.login,
+                jobStatus: ob.status
             }
         )
       }
@@ -81,13 +82,16 @@ function buildResponse(p) {
                 branchDeployed: ob.branch,
                 buildNumber: ob.build_num,
                 buildStartedOn: moment(ob.start_time).tz("Asia/Kolkata").format("MMMM Do YYYY, h:mm:ss a"),
+                buildStartedOnEDT: moment(ob.start_time).tz("America/New_York").format("MMMM Do YYYY, h:mm:ss a"),
                 buildFinishedOn: null,
+                buildFinishedOnEDT: null,
                 authorName: ob.author_name,
                 buildTimeMillis:prettyMilliseconds(ob.build_time_millis),
                 body:ob.body,
                 build_url:ob.build_url,
                 committer_name:ob.committer_name,
-                author:ob.user.login
+                author:ob.user.login,
+                jobStatus: ob.status
             }
         )
       }
