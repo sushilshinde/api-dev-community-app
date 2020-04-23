@@ -65,7 +65,7 @@ function buildResponse(p) {
                 buildTimeMillis:prettyMilliseconds(ob.build_time_millis),
                 body:ob.body,
                 buildUrl:ob.build_url,
-                committer_name:ob.committer_name,
+                committerName:ob.committer_name,
                 authorGitHubHandle:ob.user.login,
                 jobStatus: ob.status
             }
@@ -90,8 +90,8 @@ function buildResponse(p) {
                 authorName: ob.author_name,
                 buildTimeMillis:null,
                 body:ob.body,
-                build_url:ob.build_url,
-                committer_name:ob.committer_name,
+                buildUrl:ob.build_url,
+                committerName:ob.committer_name,
                 author:ob.user.login,
                 jobStatus: ob.status
             }
