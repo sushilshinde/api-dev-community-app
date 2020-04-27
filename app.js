@@ -28,9 +28,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/v1/api', v1ApiRouter);
+
+//https://stackoverflow.com/questions/29334800/express-js-4-and-sockets-with-express-router
 app.use('/webhooks', webhookRouter);
-//app.use(compression())
-// catch 404 and forward to error handler
+
 app.use(function(req, res, next) {
   next(createError(404));
 });
