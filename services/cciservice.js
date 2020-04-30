@@ -3,6 +3,7 @@ const prettyMilliseconds = require('pretty-ms');
 const axios = require("axios");
 const moment = require("moment");
 require("dotenv").config();
+
 exports.getEnvironmentDeployments = async () => {
   let data = null;
   try {
@@ -21,6 +22,7 @@ function buildResponse(p) {
     const ENVS = [
       "build-dev",
       "build-prod-beta",
+      "build-prod-staging",
       "build-test",
       "build-qa",
       "build-prod"
@@ -29,6 +31,7 @@ function buildResponse(p) {
     const ENV_DETAILS = {
       "build-dev":{name:"Developement","url":"https://community-app.topcoder.com","api":"Development","apiUrl":"https://api.topcoder-dev.com"},
       "build-prod-beta":{name:"Beta","url":"https://beta-community-app.topcoder.com","api":"Production","apiUrl":"https://api.topcoder.com"},
+      "build-prod-staging":{name:"Beta","url":"https://staging-community-app.topcoder.com","api":"Production","apiUrl":"https://api.topcoder.com"},
       "build-test":{name:"Test","url":"https://test-community-app.topcoder-dev.com","api":"Development","apiUrl":"https://api.topcoder-dev.com"},
       "build-qa":{name:"QA","url":"https://qa-community-app.topcoder-dev.com","api":"Development","apiUrl":"https://api.topcoder-dev.com"},
       "build-prod":{name:"Production","url":"https://community-app.topcoder.com","api":"Production","apiUrl":"https://api.topcoder.com"},
@@ -106,47 +109,3 @@ function buildResponse(p) {
     return latest;
   }
 
-
-
-/*  
- const res = await setTimeout(async () => {
-    return {
-      statusGeneratedOn: "April 22nd 2020, 6:59:57 pm IST",
-      deployments: [
-        {
-          env: "Prod-Beta",
-          branchDeployed: "develop",
-          buildNumber: "8438",
-          buildStartedOn: "April 21st 2020, 6:02:09 pm IST",
-          buildFinishedOn: "April 21st 2020, 6:20:09 pm IST",
-        },
-        {
-          env: "Prod-Beta",
-          branchDeployed: "develop",
-          buildNumber: "8438",
-          buildStartedOn: "April 21st 2020, 6:02:09 pm IST",
-          buildFinishedOn: "April 21st 2020, 6:02:09 pm IST",
-        },
-        {
-          env: "Prod-Beta",
-          branchDeployed: "develop",
-          buildNumber: "8438",
-          buildStartedOn: "April 21st 2020, 6:02:09 pm IST",
-          buildFinishedOn: "April 21st 2020, 6:02:09 pm IST",
-        },
-        {
-          env: "Prod-Beta",
-          branchDeployed: "develop",
-          buildNumber: "8438",
-          buildStartedOn: "April 21st 2020, 6:02:09 pm IST",
-          buildFinishedOn: "April 21st 2020, 6:02:09 pm IST",
-        },
-      ],
-    };
-  }, 3000);
-
-
-
-
-
-*/
