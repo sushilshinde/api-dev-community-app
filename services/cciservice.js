@@ -27,11 +27,11 @@ function buildResponse(p) {
     ];
 
     const ENV_DETAILS = {
-      "build-dev":{name:"Developement","url":"https://community-app.topcoder.com/","api":"Development","apiUrl":"https://api.topcoder-dev.com/"},
-      "build-prod-beta":{name:"Beta","url":"https://beta-community-app.topcoder.com/","api":"Production","apiUrl":"https://api.topcoder.com/"},
-      "build-test":{name:"Test","url":"https://test-community-app.topcoder-dev.com/","api":"Development","apiUrl":"https://api.topcoder-dev.com/"},
-      "build-qa":{name:"QA","url":"https://qa-community-app.topcoder-dev.com/","api":"Development","apiUrl":"https://api.topcoder-dev.com/"},
-      "build-prod":{name:"Production","url":"https://community-app.topcoder.com/","api":"Production","apiUrl":"https://api.topcoder.com/"},
+      "build-dev":{name:"Developement","url":"https://community-app.topcoder.com","api":"Development","apiUrl":"https://api.topcoder-dev.com"},
+      "build-prod-beta":{name:"Beta","url":"https://beta-community-app.topcoder.com","api":"Production","apiUrl":"https://api.topcoder.com"},
+      "build-test":{name:"Test","url":"https://test-community-app.topcoder-dev.com","api":"Development","apiUrl":"https://api.topcoder-dev.com"},
+      "build-qa":{name:"QA","url":"https://qa-community-app.topcoder-dev.com","api":"Development","apiUrl":"https://api.topcoder-dev.com"},
+      "build-prod":{name:"Production","url":"https://community-app.topcoder.com","api":"Production","apiUrl":"https://api.topcoder.com"},
     }
     let latest = [];
     let tracker = []
