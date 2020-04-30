@@ -27,11 +27,11 @@ function buildResponse(p) {
     ];
 
     const ENV_DETAILS = {
-      "build-dev":{name:"Developement","url":"https://community-app.topcoder.com/","api":"Development","apiUrl":"https://api.topcoder-dev.com/"},
-      "build-prod-beta":{name:"Beta","url":"https://beta-community-app.topcoder.com/challenges","api":"Production","apiUrl":"https://api.topcoder.com/"},
-      "build-test":{name:"Test","url":"https://test-community-app.topcoder-dev.com/","api":"Development","apiUrl":"https://api.topcoder-dev.com/"},
-      "build-qa":{name:"QA","url":"https://qa-community-app.topcoder-dev.com/","api":"Development","apiUrl":"https://api.topcoder-dev.com/"},
-      "build-prod":{name:"Production","url":"https://community-app.topcoder.com/","api":"Production","apiUrl":"https://api.topcoder.com/"},
+      "build-dev":{name:"Developement","url":"https://community-app.topcoder.com","api":"Development","apiUrl":"https://api.topcoder-dev.com"},
+      "build-prod-beta":{name:"Beta","url":"https://beta-community-app.topcoder.com","api":"Production","apiUrl":"https://api.topcoder.com"},
+      "build-test":{name:"Test","url":"https://test-community-app.topcoder-dev.com","api":"Development","apiUrl":"https://api.topcoder-dev.com"},
+      "build-qa":{name:"QA","url":"https://qa-community-app.topcoder-dev.com","api":"Development","apiUrl":"https://api.topcoder-dev.com"},
+      "build-prod":{name:"Production","url":"https://community-app.topcoder.com","api":"Production","apiUrl":"https://api.topcoder.com"},
     }
     let latest = [];
     let tracker = []
@@ -52,22 +52,25 @@ function buildResponse(p) {
       ) {
        
         tracker.push(ob.workflows.job_name)
+        console.log(ob)
         latest.push(
             {
                 env: envDetails,
                 branchDeployed: ob.branch,
-                buildNumber: ob.build_num,
+                buildNumber: ob.build_num,                
                 buildStartedOn: moment(ob.start_time).tz("Asia/Kolkata").format("MMMM Do YYYY, h:mm:ss a"),
                 buildStartedOnEDT: moment(ob.start_time).tz("America/New_York").format("MMMM Do YYYY, h:mm:ss a"),
                 buildFinishedOn: moment(ob.stop_time).tz("Asia/Kolkata").format("MMMM Do YYYY, h:mm:ss a"),
                 buildFinishedOnEDT: moment(ob.stop_time).tz("America/New_York").format("MMMM Do YYYY, h:mm:ss a"),
                 authorName: ob.author_name,
+                startedOn:ob.start_time,
+                finishedOn:ob.stop_time,                
                 buildTimeMillis:prettyMilliseconds(ob.build_time_millis),
                 body:ob.body,
                 buildUrl:ob.build_url,
                 committerName:ob.committer_name,
                 authorGitHubHandle:ob.user.login,
-                jobStatus: ob.status
+                jobStatus: ob.status,
             }
         )
       }
@@ -87,13 +90,15 @@ function buildResponse(p) {
                 buildStartedOnEDT: moment(ob.start_time).tz("America/New_York").format("MMMM Do YYYY, h:mm:ss a"),
                 buildFinishedOn: null,
                 buildFinishedOnEDT: null,
-                authorName: ob.author_name,
-                buildTimeMillis:null,
+                authorName: ob.author_name,   
+                startedOn:ob.start_time,
+                finishedOn:ob.stop_time,  
+                buildTimeMillis: moment().utc().diff(ob.start_time),             
                 body:ob.body,
                 buildUrl:ob.build_url,
                 committerName:ob.committer_name,
                 author:ob.user.login,
-                jobStatus: ob.status
+                jobStatus: ob.status,               
             }
         )
       }

@@ -7,8 +7,9 @@ var bodyParser = require('body-parser');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var usersRouter = require('./routes/users');
 
+//TODO: https://stackoverflow.com/questions/18856190/use-socket-io-inside-a-express-routes-file
+//https://www.youtube.com/watch?v=LV3eUWrQeWk
 var v1ApiRouter = require('./routes/v1Api');
 var webhookRouter = require('./routes/webhooks');
 var app = express();
@@ -26,7 +27,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+
 app.use('/v1/api', v1ApiRouter);
 
 //https://stackoverflow.com/questions/29334800/express-js-4-and-sockets-with-express-router
